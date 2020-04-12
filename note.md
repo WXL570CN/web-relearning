@@ -4,9 +4,8 @@
 
 # 2、async 和 defer 的区别
     ```
-    <script async></script>
-    <script defer></script>
-    ```
+        <script async></script>
+        <script defer></script>
     **相同点：** 加上两者的 script 脚本都不会阻塞html的解析
     **不同：**
       async：脚本加载过程中html同时在解析，脚本加载完成后立刻开始执行会阻塞html解析
