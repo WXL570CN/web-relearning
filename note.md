@@ -9,7 +9,7 @@ script脚本会阻塞html的解析
     <script defer></script>
 ```
 ### 相同点
-    加上两者的 script 脚本都不会阻塞html的解析
+加上两者的 script 脚本都不会阻塞html的解析
 
 ### 不同点：
 async：脚本加载过程中html同时在解析，脚本加载完成后立刻开始执行会阻塞html解析
@@ -52,15 +52,10 @@ res.setHeader('Location', 'https://messiahhh.github.io/blog')
 
 # CSS3
 ## 1、选择器
-1. 标签选择器
-`div {}`
-2. 属性选择器 
-`a[title='..'] {}`
+1. 标签选择器 `div {}`
+2. 属性选择器 `a[title='..'] {}`
 2. id选择器
 3. class选择器
-4. 子代选择器 
-`ul>li {}`
-5. 后代选择器
-`body li {}`
-6. 相邻兄弟选择器
-`h1 + p {}`
+4. 子代选择器 `ul>li {}`
+5. 后代选择器 `body li {}`
+6. 相邻兄弟选择器 `h1 + p {}`
