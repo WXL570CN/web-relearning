@@ -119,4 +119,30 @@ p:first-of-type: 父元素下的第一个p元素
 #### table布局
 水平垂直居中7.html
 
-## 8、
+## 8、BFC
+Block Formatting Contexts （块级格式化上下文)
+它是一个独立的盒子，并且这个独立的盒子内部布局不受外界影响。
+### 何时会触发BFC：
+根元素<html>
+float的值不为none。
+position的值不为relative和static。
+overflow的值为auto,scroll或hidden。
+display的值为table-cell, table-caption, inline-block中的任何一个。
+### 作用
+一：清除浮动（阻止高度塌陷）。
+二：外边距合并：同属一个BFC的相邻元素会发生外边距（margin）重叠。
+三：阻止元素被浮动元素覆盖，可用来实现两列布局。
+
+## 9、清除浮动
+### 浮动影响
+在父元素未定义高度时，父元素高度会坍缩
+### 清除浮动方法
+#### BFC清除浮动
+#### 添加额外标签，应用 clear: both
+在浮动的盒子后面添加一个空盒子，并给样式添加该属性
+清除浮动1.html
+#### 使用伪元素 :after
+上一种方法的优化，在浮动的盒子后面追加一个块元素
+清除浮动2.html
+
+## 10、
