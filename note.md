@@ -145,4 +145,10 @@ display的值为table-cell, table-caption, inline-block中的任何一个。
 上一种方法的优化，在浮动的盒子后面追加一个块元素
 清除浮动2.html
 
-## 10、
+## 10、inline-block的间隙问题
+两个被 display: inline-block 的元素放到一起会产生一段空白
+因为这时两个元素之间的代码换行会被转换成空白符
+### 解决方法
+将两个盒子代码写在同一行
+
+## 11、
