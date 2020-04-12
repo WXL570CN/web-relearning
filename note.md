@@ -58,4 +58,65 @@ res.setHeader('Location', 'https://messiahhh.github.io/blog')
 3. class选择器
 4. 子代选择器 `ul>li {}`
 5. 后代选择器 `body li {}`
-6. 相邻兄弟选择器 `h1 + p {}`
+6. 群组选择器 `h1,p`
+7. 相邻兄弟选择器 `h1 + p {}`
+8. 伪类选择器 `:hover`
+```
+// first-child 和 first-of-type 的区别
+p:first-child: 当父元素下的第一个元素为p元素时
+p:first-of-type: 父元素下的第一个p元素
+```
+
+## 2、属性的权重
+!important > 内联样式 > ID选择器 > class选择器 > 标签选择器 > 通配符（*） > 浏览器默认样式 > 继承样式
+
+## 3、盒模型
+### box-sizing
+`box-sizing: content-box `：浏览器默认，盒子宽度为 width（内容宽度） + padding + border
+`box-sizing: border-box`：盒子宽度为width， 即 内容宽度 + padding + border
+
+## 4、transition：过渡效果
+`transition-property:` 过渡属性(默认值为all)
+`transition-duration:` 过渡持续时间(默认值为0s)
+`transiton-timing-function:` 过渡函数(默认值为ease函数)
+`transition-delay:` 过渡延迟时间(默认值为0s)
+注意：IE9-不支持该属性，safari3.1-6、IOS3.2-6.1、android2.1-4.3需要添加-webkit-前缀；而其余高版本浏览器支持标准写法
+
+## 5、animation：动画效果
+`animation-name` 动画名
+`animation-duration` 持续时间
+`animation-timing-function` 动画曲线
+`animation-delay` 延迟
+`animation-iteration-count` 播放次数
+`animation-direction` 是否在下一周期逆向播放
+
+## 6、元素分类
+### 行内元素
+不独占一行；宽度(width)、高度(height)、内边距和外边距的 top/bottom 都不可改变，也就是说 padding 和 margin 的左右是可以改变的。
+`a b br i span input select`
+### 块级元素
+独占一行；宽度(width)、高度(height)、内边距(padding)和外边距(margin)都可控制;
+`div p h1 h2 h3 h4 form ul`
+### 行内块元素
+不独占一行；可以设置宽和高。
+`<input> 、<img> 、<button> 、<texterea> 、<label>`
+
+## 7、水平垂直居中
+### 适用于盒子宽高已知
+#### 绝对定位 + margin-top/left + top/left
+水平垂直居中1.html
+#### 绝对定位 + margin-top/left + calc()
+水平垂直居中2.html
+#### 适用于盒子宽高未知
+#### 绝对定位 + transform + top/left
+水平垂直居中3.html
+#### 绝对定位 + margin: auto
+水平垂直居中4.html
+#### flex布局 + margin: auto
+水平垂直居中5.html
+#### flex布局
+水平垂直居中6.html
+#### table布局
+水平垂直居中7.html
+
+## 8、
