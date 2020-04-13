@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .father {
+      width: 200px;
+      height: 200px;
+    }
+
+    .one {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .more {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <p class="one">文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题</p>
+    <p class="more">
+      文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题，
+      文本溢出问题文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题，文本溢出问题文本溢出问题，文本溢出问题
+    </p>
+  </div>
+</body>
+
+</html>

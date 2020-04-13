@@ -104,34 +104,34 @@ p:first-of-type: 父元素下的第一个p元素
 ## 7、水平垂直居中
 ### 适用于盒子宽高已知
 #### 绝对定位 + margin-top/left + top/left
-水平垂直居中1.html
+1水平垂直居中1.html
 #### 绝对定位 + margin-top/left + calc()
-水平垂直居中2.html
+2水平垂直居中2.html
 #### 适用于盒子宽高未知
 #### 绝对定位 + transform + top/left
-水平垂直居中3.html
+3水平垂直居中3.html
 #### 绝对定位 + margin: auto
-水平垂直居中4.html
+4水平垂直居中4.html
 #### flex布局 + margin: auto
-水平垂直居中5.html
+5水平垂直居中5.html
 #### flex布局
-水平垂直居中6.html
+6水平垂直居中6.html
 #### table布局
-水平垂直居中7.html
+7水平垂直居中7.html
 
 ## 8、BFC
 Block Formatting Contexts （块级格式化上下文)
 它是一个独立的盒子，并且这个独立的盒子内部布局不受外界影响。
 ### 何时会触发BFC：
-根元素<html>
-float的值不为none。
-position的值不为relative和static。
-overflow的值为auto,scroll或hidden。
-display的值为table-cell, table-caption, inline-block中的任何一个。
+1. 根元素<html>
+2. float的值不为none。
+3. position的值不为relative和static。
+4. overflow的值为auto,scroll或hidden。
+5. display的值为table-cell, table-caption, inline-block中的任何一个。
 ### 作用
-一：清除浮动（阻止高度塌陷）。
-二：外边距合并：同属一个BFC的相邻元素会发生外边距（margin）重叠。
-三：阻止元素被浮动元素覆盖，可用来实现两列布局。
+1. 清除浮动（阻止高度塌陷）。
+2. 外边距合并：同属一个BFC的相邻元素会发生外边距（margin）重叠。
+3. 阻止元素被浮动元素覆盖，可用来实现两列布局。
 
 ## 9、清除浮动
 ### 浮动影响
@@ -140,15 +140,51 @@ display的值为table-cell, table-caption, inline-block中的任何一个。
 #### BFC清除浮动
 #### 添加额外标签，应用 clear: both
 在浮动的盒子后面添加一个空盒子，并给样式添加该属性
-清除浮动1.html
+8清除浮动1.html
 #### 使用伪元素 :after
 上一种方法的优化，在浮动的盒子后面追加一个块元素
-清除浮动2.html
+9清除浮动2.html
 
 ## 10、inline-block的间隙问题
 两个被 display: inline-block 的元素放到一起会产生一段空白
 因为这时两个元素之间的代码换行会被转换成空白符
 ### 解决方法
 将两个盒子代码写在同一行
+10inline-block的间隙问题.html
 
-## 11、
+## 11、display: none，visibility: hidden, opacity: 0 的区别
+### 结构上
+1. display: none 会让目标元素不会被渲染进渲染树， 因此不占空间，而且不能点击。
+2. visibility: hidden目标元素会被渲染进渲染树，因此占空间，但是不能点击。
+3. opacity: 0目标元素会被渲染进渲染树，因此占空间，而且能点击。
+### 继承上
+1. display: none 作用于父元素后，子元素也不会被渲染（即使给子元素加了display: block）
+2. visibility: hidden作用于父元素后，子元素继承这个属性，也不可见；不过可以给子元素设置visibility: visible使其可见。
+3. opacity: 0作用于父元素后，虽然子元素不会继承这个属性，但是子元素的透明度也会被影响，所以也不可见；而且不能通过给子元素设置opacity: 1使其变成不透明。
+### 性能上
+1. display: none会造成回流/重绘，性能影响大
+2. visibility: hidden会造成元素内部的重绘，性能影响相对小
+3. opacity: 0 由于opacity属性启用了GPU加速，性能最好
+### opacity属性的补充
+opacity是不继承属性，父元素设置opacity，子元素并不会继承。但是因为该属性的特殊性（类似background），父元素有了透明度，子元素的样式也会被影响。如果父元素设置opacity: 0.5，子元素设置opacity: 0.5，那么实际上子元素的透明度是0.5 * 0.5 = 0.25。
+如果希望子元素不被父元素的透明度影响，我们可以使用background: rgba代替opacity: 0
+
+## 12、文本溢出
+11文本溢出问题.html
+### 单行文本溢出
+```
+overflow:hidden; （超出限定的宽度就隐藏内容）
+white-space: nowrap; （设置文字在一行显示不能换行）
+text-overflow: ellipsis; （规定当文本溢出时显示省略符号来代表被修剪的文本）
+```
+### 多行文本溢出
+```
+overflow: hidden;
+-webkit-line-clamp:2; （用来限制在一个块元素显示的文本的行数,2表示最多显示2行。 为了实现该效果，它需要组合其他的WebKit属性）
+display: -webkit-box; （和1结合使用，将对象作为弹性伸缩盒子模型显示 ）
+-webkit-box-orient:vertical;（ 和1结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 。）
+```
+
+## 13、
+
+
