@@ -185,6 +185,34 @@ display: -webkit-box; （和1结合使用，将对象作为弹性伸缩盒子模
 -webkit-box-orient:vertical;（ 和1结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 。）
 ```
 
-## 13、
+## 13、重绘和回流
+重绘: 当渲染树中的一些元素需要更新属性，而这些属性只是影响元素的外观、风格，而不会影响布局的操作，比如 background-color，我们将这样的操作称为重绘。
+回流：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局的操作，这样的操作我们称为回流。
 
+# JavaScript
 
+## 1、js 的基本数据类型
+Number String Null Undefined Boolean Symbol
+
+## 2、原始数据类型和引用数据类型
+### 原始数据类型：Number String Null Undefined Boolean
+### 引用数据类型：对象、数组和函数
+
+## 3、堆和栈
+### 堆：堆是一个优先队列，是按优先级来进行排序的，优先级可以按照大小来规定。完全二叉树是堆的一种实现方式。
+### 栈：栈中数据的存取方式为先进后出
+
+## 4、js的内置对象
+## 值属性
+    Infinity NaN Undefined Null等
+## 函数属性
+    eval() parseInt() parseFloat()等
+## 基本对象
+    Object Function Boolean Symbol Error等
+## 数字和日期对象
+    Number Math Date
+## 字符串
+    String
+## 结构化数据
+    JSON
+...
