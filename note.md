@@ -203,16 +203,22 @@ Number String Null Undefined Boolean Symbol
 ### 栈：栈中数据的存取方式为先进后出
 
 ## 4、js的内置对象
-## 值属性
+### 值属性
     Infinity NaN Undefined Null等
-## 函数属性
+### 函数属性
     eval() parseInt() parseFloat()等
-## 基本对象
+### 基本对象
     Object Function Boolean Symbol Error等
-## 数字和日期对象
+### 数字和日期对象
     Number Math Date
-## 字符串
+### 字符串
     String
-## 结构化数据
+### 结构化数据
     JSON
 ...
+
+## Null 和 Undefined 区别
+### Undefined：一般变量声明了但还没有定义的时候会返回 undefined
+### Null：null主要用于赋值给一些可能会返回对象的变量，作为初始化。
+### 当我们对两种类型使用 typeof 进行判断的时候，Null 类型化会返回 “object”，这是一个历史遗留的问题。当我们使用双等号对两种类型的值进行比较时会返回 true，使用三个等号时会返回 false。
+
