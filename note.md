@@ -319,4 +319,16 @@ ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而
 vue实现数据双向绑定主要是：采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty（）来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应监听回调。当把一个普通 Javascript 对象传给 Vue 实例来作为它的 data 选项时，Vue 将遍历它的属性，用 Object.defineProperty 将它们转为 getter/setter。用户看不到 getter/setter，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化。
 
 vue的数据双向绑定 将MVVM作为数据绑定的入口，整合Observer，Compile和Watcher三者，通过Observer来监听自己的model的数据变化，通过Compile来解析编译模板指令（vue中是用来解析 {{}}），最终利用watcher搭起observer和Compile之间的通信桥梁，达到数据变化 —>视图更新；视图交互变化（input）—>数据model变更双向绑定效果。
-    
+
+## 5、简述Vue的响应式原理
+当一个Vue实例创建时，vue会遍历data选项的属性，用 Object.defineProperty 将它们转为 getter/setter并且在内部追踪相关依赖，在属性被访问和修改时通知变化。每个组件实例都有相应的 watcher 程序实例，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。
+
+# 计算机网络
+## 网页从输入网址到渲染完成经历了哪些过程？
+1. 输入网址；
+2. 发送到DNS服务器，并获取域名对应的web服务器对应的ip地址；
+3. 与web服务器建立TCP连接；
+4. 浏览器向web服务器发送http请求；
+5. web服务器响应请求，并返回指定url的数据（或错误信息，或重定向的新的url地址）；
+6. 浏览器下载web服务器返回的数据及解析html源文件；
+7. 生成DOM树，解析css和js，渲染页面，直至显示完成；
