@@ -1,3 +1,5 @@
+[TOC]
+
 # HTML5
 ## 1、脚本的加载
 script脚本会阻塞html的解析
