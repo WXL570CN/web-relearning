@@ -255,12 +255,17 @@ Number String Null Undefined Boolean Symbol
 
 ## 3、解构赋值
 用于数组，位置一一对应，可以指定默认值
+
 	let [a, b, c = 3] = [1, 2];
 	>> a = 1, b = 2, c = 3
+
 用于对象，通过键名对应，位置随意，可以定义一个变量接收，同样可以指定默认值
+
 	let {name, age} = {name:"lisi", age:20}
 	let {name: myname, age: myage}
+
 对象的解构赋值本质上是赋值给键值对中的值
+
     let {name, age} = {name:"lisi", age:20}
     实际上是
     let {name: name, age: age} = {name:"lisi", age:20}
