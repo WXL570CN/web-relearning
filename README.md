@@ -1,96 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [HTML5](#html5)
-  - [1、脚本的加载](#1%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8A%A0%E8%BD%BD)
-  - [2、async 和 defer 的区别](#2async-%E5%92%8C-defer-%E7%9A%84%E5%8C%BA%E5%88%AB)
-    - [相同点](#%E7%9B%B8%E5%90%8C%E7%82%B9)
-    - [不同点：](#%E4%B8%8D%E5%90%8C%E7%82%B9)
-  - [3、DOMContentLoaded和Load的区别](#3domcontentloaded%E5%92%8Cload%E7%9A%84%E5%8C%BA%E5%88%AB)
-    - [DOMContentLoaded](#domcontentloaded)
-    - [Load](#load)
-  - [4、href和src的区别](#4href%E5%92%8Csrc%E7%9A%84%E5%8C%BA%E5%88%AB)
-    - [href](#href)
-    - [src](#src)
-  - [5、link和@import的区别](#5link%E5%92%8Cimport%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [6、Doctype](#6doctype)
-  - [7、重定向](#7%E9%87%8D%E5%AE%9A%E5%90%91)
-- [CSS3](#css3)
-  - [1、选择器](#1%E9%80%89%E6%8B%A9%E5%99%A8)
-  - [2、属性的权重](#2%E5%B1%9E%E6%80%A7%E7%9A%84%E6%9D%83%E9%87%8D)
-  - [3、盒模型](#3%E7%9B%92%E6%A8%A1%E5%9E%8B)
-    - [box-sizing](#box-sizing)
-  - [4、transition：过渡效果](#4transition%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C)
-  - [5、animation：动画效果](#5animation%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C)
-  - [6、元素分类](#6%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB)
-    - [行内元素](#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0)
-    - [块级元素](#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0)
-    - [行内块元素](#%E8%A1%8C%E5%86%85%E5%9D%97%E5%85%83%E7%B4%A0)
-  - [7、水平垂直居中](#7%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
-    - [适用于盒子宽高已知](#%E9%80%82%E7%94%A8%E4%BA%8E%E7%9B%92%E5%AD%90%E5%AE%BD%E9%AB%98%E5%B7%B2%E7%9F%A5)
-      - [绝对定位 + margin-top/left + top/left](#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D--margin-topleft--topleft)
-      - [绝对定位 + margin-top/left + calc()](#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D--margin-topleft--calc)
-      - [适用于盒子宽高未知](#%E9%80%82%E7%94%A8%E4%BA%8E%E7%9B%92%E5%AD%90%E5%AE%BD%E9%AB%98%E6%9C%AA%E7%9F%A5)
-      - [绝对定位 + transform + top/left](#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D--transform--topleft)
-      - [绝对定位 + margin: auto](#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D--margin-auto)
-      - [flex布局 + margin: auto](#flex%E5%B8%83%E5%B1%80--margin-auto)
-      - [flex布局](#flex%E5%B8%83%E5%B1%80)
-      - [table布局](#table%E5%B8%83%E5%B1%80)
-  - [8、BFC](#8bfc)
-    - [何时会触发BFC：](#%E4%BD%95%E6%97%B6%E4%BC%9A%E8%A7%A6%E5%8F%91bfc)
-    - [作用](#%E4%BD%9C%E7%94%A8)
-  - [9、清除浮动](#9%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8)
-    - [浮动影响](#%E6%B5%AE%E5%8A%A8%E5%BD%B1%E5%93%8D)
-    - [清除浮动方法](#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E6%96%B9%E6%B3%95)
-      - [BFC清除浮动](#bfc%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8)
-      - [添加额外标签，应用 clear: both](#%E6%B7%BB%E5%8A%A0%E9%A2%9D%E5%A4%96%E6%A0%87%E7%AD%BE%E5%BA%94%E7%94%A8-clear-both)
-      - [使用伪元素 :after](#%E4%BD%BF%E7%94%A8%E4%BC%AA%E5%85%83%E7%B4%A0-after)
-  - [10、inline-block的间隙问题](#10inline-block%E7%9A%84%E9%97%B4%E9%9A%99%E9%97%AE%E9%A2%98)
-    - [解决方法](#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95)
-  - [11、display: none，visibility: hidden, opacity: 0 的区别](#11display-nonevisibility-hidden-opacity-0-%E7%9A%84%E5%8C%BA%E5%88%AB)
-    - [结构上](#%E7%BB%93%E6%9E%84%E4%B8%8A)
-    - [继承上](#%E7%BB%A7%E6%89%BF%E4%B8%8A)
-    - [性能上](#%E6%80%A7%E8%83%BD%E4%B8%8A)
-    - [opacity属性的补充](#opacity%E5%B1%9E%E6%80%A7%E7%9A%84%E8%A1%A5%E5%85%85)
-  - [12、文本溢出](#12%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA)
-    - [单行文本溢出](#%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA)
-    - [多行文本溢出](#%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA)
-  - [13、重绘和回流](#13%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81)
-- [JavaScript](#javascript)
-  - [1、js 的基本数据类型](#1js-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
-  - [2、原始数据类型和引用数据类型](#2%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
-  - [3、堆和栈](#3%E5%A0%86%E5%92%8C%E6%A0%88)
-  - [4、js的内置对象](#4js%E7%9A%84%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
-    - [值属性](#%E5%80%BC%E5%B1%9E%E6%80%A7)
-    - [函数属性](#%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7)
-    - [基本对象](#%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1)
-    - [数字和日期对象](#%E6%95%B0%E5%AD%97%E5%92%8C%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1)
-    - [字符串](#%E5%AD%97%E7%AC%A6%E4%B8%B2)
-    - [结构化数据](#%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE)
-  - [5、Null 和 Undefined 区别](#5null-%E5%92%8C-undefined-%E5%8C%BA%E5%88%AB)
-  - [6、说几条写 JavaScript 的基本规范？](#6%E8%AF%B4%E5%87%A0%E6%9D%A1%E5%86%99-javascript-%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%84%E8%8C%83)
-  - [7、](#7)
-- [ES6](#es6)
-  - [1、let](#1let)
-  - [2、const](#2const)
-  - [3、解构赋值](#3%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC)
-- [Vue](#vue)
-  - [1、对MVVM的理解](#1%E5%AF%B9mvvm%E7%9A%84%E7%90%86%E8%A7%A3)
-  - [2、Vue的生命周期](#2vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
-  - [3、有关Vue生命周期的问题](#3%E6%9C%89%E5%85%B3vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E9%97%AE%E9%A2%98)
-    - [3.1、什么是vue生命周期？](#31%E4%BB%80%E4%B9%88%E6%98%AFvue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
-    - [3.2、vue生命周期的作用是什么？](#32vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88)
-    - [3.3、vue生命周期总共有几个阶段？](#33vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%80%BB%E5%85%B1%E6%9C%89%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5)
-    - [3.4、第一次页面加载会触发哪几个钩子？](#34%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E4%BC%9A%E8%A7%A6%E5%8F%91%E5%93%AA%E5%87%A0%E4%B8%AA%E9%92%A9%E5%AD%90)
-    - [3.5、DOM 渲染在 哪个周期中就已经完成？](#35dom-%E6%B8%B2%E6%9F%93%E5%9C%A8-%E5%93%AA%E4%B8%AA%E5%91%A8%E6%9C%9F%E4%B8%AD%E5%B0%B1%E5%B7%B2%E7%BB%8F%E5%AE%8C%E6%88%90)
-  - [4、Vue实现数据双向绑定的原理](#4vue%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86)
-  - [5、简述Vue的响应式原理](#5%E7%AE%80%E8%BF%B0vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86)
-- [计算机网络](#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C)
-  - [1、网页从输入网址到渲染完成经历了哪些过程？](#1%E7%BD%91%E9%A1%B5%E4%BB%8E%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E6%B8%B2%E6%9F%93%E5%AE%8C%E6%88%90%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B%E8%BF%87%E7%A8%8B)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # HTML5
 ## 1、脚本的加载
 script脚本会阻塞html的解析
@@ -373,22 +280,21 @@ MVVM 是 Model-View-ViewModel 的缩写。
 ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而View 和 Model 之间的同步工作完全是自动的，无需人为干涉，因此开发者只需关注业务逻辑，不需要手动操作DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理。
 
 ## 2、Vue的生命周期
-**beforeCreate（创建前）**： 在数据观测和初始化事件还未开始
+**beforeCreate（创建前）**：el 和 data 并未初始化（这个时期，this变量还不能使用，在data下的数据，和methods下的方法，watcher中的事件都不能获得到；）
 
-__created（创建后）__ ：完成数据观测，属性和方法的运算，初始化事件，$el属性还没有显示出来
+__created（创建后）__ ：完成了 data 数据的初始化，el没有,$el属性还没有显示出来（这个时候可以操作vue实例中的数据和各种方法，但是还不能对"dom"节点进行操作；）。异步请求适合在这调用。
 
-**beforeMount（载入前）**：在挂载开始之前被调用，相关的render函数首次被调用。实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上。
+**beforeMount（载入前）**：在挂载开始之前被调用，完成了 el 和 data 初始化，这里的el是虚拟的dom。实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上。
 
 **mounted（载入后）**：在el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。实例已完成以下的配置：用上面编译好的html内容替换el属性指向的DOM对象。完成模板中的html渲染到html页面中。此过程中进行ajax交互。
 
-**beforeUpdate（更新前）** ：在数据更新之前调用，发生在虚拟DOM重新渲染和打补丁之前。可以在该钩子中进一步地更改状态，不会触发附加的重渲染过程。
+**beforeUpdate（更新前）** ：是指view层数据变化前，不是data中的数据改变前触发；
 
-
-**updated（更新后）** ：在由于数据更改导致的虚拟DOM重新渲染和打补丁之后调用。调用时，组件DOM已经更新，所以可以执行依赖于DOM的操作。然而在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用。
+**updated（更新后）** ：是指view层的数据变化之后，调用时，组件DOM已经更新，所以可以执行依赖于DOM的操作。在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。
 
 **beforeDestroy（销毁前）**：在实例销毁之前调用。实例仍然完全可用。
 
-**destroyed（销毁后）**：在实例销毁之后调用。调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。
+**destroyed（销毁后）**：当前组件已被删除，清空相关内容。调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。
 
 ## 3、有关Vue生命周期的问题
 ### 3.1、什么是vue生命周期？
@@ -413,6 +319,14 @@ vue的数据双向绑定 将MVVM作为数据绑定的入口，整合Observer，C
 
 ## 5、简述Vue的响应式原理
 当一个Vue实例创建时，vue会遍历data选项的属性，用 Object.defineProperty 将它们转为 getter/setter并且在内部追踪相关依赖，在属性被访问和修改时通知变化。每个组件实例都有相应的 watcher 程序实例，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。
+
+## 6、说说你对 SPA 单页面的理解，它的优缺点分别是什么？ 
+SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 HTML、JavaScript 和 CSS。一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转；取而代之的是利用路由机制实现 HTML 内容的变换，UI 与用户的交互，避免页面的重新加载。  
+优点： 用户体验好、快，内容的改变不需要重新加载整个页面，避免了不必要的跳转和重复渲染；基于上面一点，SPA 相对对服务器压力小；前后端职责分离，架构清晰，前端进行交互逻辑，后端负责数据处理；  
+缺点：  
+1. 初次加载耗时多：为实现单页 Web 应用功能及显示效果，需要在加载页面的时候将 JavaScript、CSS 统一加载，部分页面按需加载；
+2. 前进后退路由管理：由于单页应用在一个页面中显示所有的内容，所以不能使用浏览器的前进后退功能，所有的页面切换需要自己建立堆栈管理；
+3. SEO 难度较大：由于所有的内容都在一个页面中动态替换显示，所以在 SEO 上其有着天然的弱势。
 
 # 计算机网络
 ## 1、网页从输入网址到渲染完成经历了哪些过程？
