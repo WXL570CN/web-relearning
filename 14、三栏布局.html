@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .layout {
+      margin-top: 10px;
+    }
+
+    .layout article div {
+      min-height: 100px;
+    }
+
+    .layout div.left {
+      background-color: red;
+      width: 300px;
+    }
+
+    .layout div.center {
+      background-color: blue;
+    }
+
+    .layout div.right {
+      background-color: yellow;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- float布局 -->
+  <section class="layout float">
+    <style>
+      .layout.float .left {
+        float: left;
+      }
+
+      .layout.float .right {
+        float: right;
+      }
+
+      .layout.float .center {
+        margin: 0 300px;
+      }
+    </style>
+    <article class="left-center-right">
+      <div class="left"></div>
+      <div class="center">
+        <h1>float布局解决方案</h1>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+  <!-- 绝对定位 -->
+  <section class="layout absolute">
+    <style>
+      .absolute .left-center-right div {
+        position: absolute;
+      }
+
+      .absolute div.left {
+        left: 0;
+      }
+
+      .absolute div.center {
+        left: 300px;
+        right: 300px;
+      }
+
+      .absolute div.right {
+        right: 0;
+      }
+    </style>
+    <article class="left-center-right">
+      <div class="left"></div>
+      <div class="center">
+        <h1>绝对定位解决方案</h1>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+  <!-- flex布局 -->
+
+
+  <!-- 表格布局 -->
+
+
+  <!-- 网格布局 -->
+
+</body>
+
+</html>
