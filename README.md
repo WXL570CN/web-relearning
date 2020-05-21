@@ -431,7 +431,7 @@ const greetings = (name) => {
 }
 const greetings = name => `hello ${name}`;
 ```
-> 常量
+> 常量  
 常量在很多方面与其他语言中的常量一样，但有一些需要注意的地方。常量表示对值的“固定引用”。因此，在使用常量时，你实际上可以改变变量所引用的对象的属性，但无法改变引用本身。
 ```
 const NAMES = [];
@@ -439,10 +439,10 @@ NAMES.push("Jim");
 console.log(NAMES.length === 1); // true
 NAMES = ["Steve", "John"]; // error
 ```
-> 块作用域变量。
+> 块作用域变量。  
 新的 ES6 关键字 let 允许开发人员声明块级别作用域的变量。let 不像 var 那样可以进行提升。
 
-> 默认参数值
+> 默认参数值  
 默认参数允许我们使用默认值初始化函数。如果省略或未定义参数，则使用默认值，也就是说 null 是有效值。
 ```
 // 基本语法
@@ -451,19 +451,19 @@ function multiply (a, b = 2) {
 }
 multiply(5); // 10
 ```
-> 类定义和继承
+> 类定义和继承  
 ES6 引入了对类（关键字 class）、构造函数（关键字 constructor）和用于继承的 extend 关键字的支持。
 
-> for…of 操作符
+> for…of 操作符  
 for…of 语句将创建一个遍历可迭代对象的循环。
 
-> 用于对象合并的 Spread 操作
+> 用于对象合并的 Spread 操作  
 ```
 const obj1 = { a: 1, b: 2 }
 const obj2 = { a: 2, c: 3, d: 4}
 const obj3 = {...obj1, ...obj2}
 ```
-> promise
+> promise  
 promise 提供了一种机制来处理异步操作结果。你可以使用回调来达到同样的目的，但是 promise 通过方法链接和简洁的错误处理带来了更高的可读性。
 ```
 const isGreater = (a, b) => {
