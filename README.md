@@ -358,6 +358,7 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
 子向父组件传值：子组件通过$emit()传送，父组件通过方法绑定接收
 
 ## 8、Vue路由实现页面跳转的两种方式（router-link和JS）
+### router-link实现
 > 简单写法
 ```
 <router-link to="demo2">demo2</router-link>
@@ -388,13 +389,13 @@ mounted () {
     alert(this.$route.query.plan)
 }
 ```
-> JS实现
+### JS实现
 ```
 <!-- template 部分： -->
 <button @click="toURL">跳转页面</button>
 <!-- script 部分：（注意这里是 router，上面是 route） -->
 ```
->> 简单写法：
+> 简单写法：
 ```
 methods:{
     toURL(){
@@ -402,7 +403,7 @@ methods:{
     }
 }
 ```
->> 传参：
+> 传参：
 ```
 methods:{
     toURL(){
@@ -410,7 +411,7 @@ methods:{
     }
 }
 ```
->> 传入地址键值对：
+> 传入地址键值对：
 ```
 methods:{
     toURL(){
@@ -418,6 +419,8 @@ methods:{
     }
 }
 ```
+
+
 # 计算机网络
 ## 1、网页从输入网址到渲染完成经历了哪些过程？
 1. 输入网址；
