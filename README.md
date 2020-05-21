@@ -337,7 +337,7 @@ ES6新增语法
 ECMAScript 5（ES5）：ECMAScript 的第 5 版，于 2009 年标准化。这个标准已在所有现代浏览器中完全实现。
 ECMAScript 6（ES6）或 ECMAScript 2015（ES2015）：第 6 版 ECMAScript，于 2015 年标准化。这个标准已在大多数现代浏览器中部分实现。
 ```
-> 箭头函数和字符串插值：
+> 箭头函数和模板字符串：
 ```
 const greetings = (name) => {
  return `hello ${name}`;
@@ -402,6 +402,26 @@ const myModule = { x: 1, y: () => { console.log('This is ES5') }}
 export default myModule;
 import myModule from './myModule';
 ```
+
+> 变量的解构赋值
+ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构
+```
+let [a, b, c] = [1, 2, 3];
+```
+如果解构不成功，变量的值就等于undefined。
+```
+let [bar, foo] = [1];
+```
+可以给定默认值，但当赋的值严格等于undefined，默认值才会生效
+```
+let [foo = true] = [];
+foo // true
+
+let [x, y = 'b'] = ['a']; // x='a', y='b'
+let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
+```
+
+
 
 
 # Vue
