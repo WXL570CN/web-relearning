@@ -63,7 +63,7 @@
   <!-- 绝对定位 -->
   <section class="layout absolute">
     <style>
-      .absolute .left-center-right div {
+      .layout.absolute>.left-center-right>div {
         position: absolute;
       }
 
@@ -90,10 +90,42 @@
   </section>
 
   <!-- flex布局 -->
-
+  <section class="layout flex">
+    <style>
+      .layout.layout.flex{
+        margin-top: 120px;
+      }
+      .layout.flex article{
+        display: flex;
+      }
+      .layout.flex article .center{
+        flex: 1;
+      }
+    </style>
+    <article class="left-center-right">
+      <div class="left"></div>
+      <div class="center">
+        <h1>flex布局解决方案</h1>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
 
   <!-- 表格布局 -->
-
+  <section class="layout table">
+    <style>
+      .layout.table article{
+        display: table;
+      }
+    </style>
+    <article class="left-center-right">
+      <div class="left"></div>
+      <div class="center">
+        <h1>flex布局解决方案</h1>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
 
   <!-- 网格布局 -->
 
