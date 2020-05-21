@@ -253,6 +253,55 @@ Null：null主要用于赋值给一些可能会返回对象的变量，作为初
 闭包就是能够读取其他函数内部变量的函数,使得函数不被GC回收。  
 如果过多使用闭包，容易导致内存泄露。
 
+## 8、 解释什么是回调函数，并提供一个简单的例子。
+回调函数是可以作为参数传递给另一个函数的函数，并在某些操作完成后执行。下面是一个简单的回调函数示例，这个函数在某些操作完成后打印消息到控制台。
+```
+function modifyArray(arr, callback) {
+ // 对 arr 做一些操作
+ arr.push(100);
+ // 执行传进来的 callback 函数
+ callback();
+}
+var arr = [1, 2, 3, 4, 5];
+modifyArray(arr, function() {
+ console.log("array has been modified", arr);
+});
+```
+
+## 9、“use strict”的作用是什么？
+use strict 出现在 JavaScript 代码的顶部或函数的顶部，可以帮助你写出更安全的 JavaScript 代码。如果你错误地创建了全局变量，它会通过抛出错误的方式来警告你。例如，以下程序将抛出错误：
+
+## 10、 解释 JavaScript 中的 null 和 undefined。
+JavaScript 中有两种底层类型：null 和 undefined。它们代表了不同的含义：  
+尚未初始化：undefined；  
+空值：null。
+
+## 11、 编写一个可以执行如下操作的函数。
+```
+var addSix = createBase(6);
+addSix(10); // 返回 16
+addSix(21); // 返回 27
+```
+可以创建一个闭包来存放传递给函数 createBase 的值。被返回的内部函数是在外部函数中创建的，内部函数就成了一个闭包，它可以访问外部函数中的变量，在本例中是变量 baseNumber。
+```
+function createBase(baseNumber) {
+ return function(N) {
+ // 我们在这里访问 baseNumber，即使它是在这个函数之外声明的。
+ // JavaScript 中的闭包允许我们这么做。
+ return baseNumber + N;
+ }
+}
+var addSix = createBase(6);
+addSix(10);
+addSix(21);
+```
+
+## 12、 解释事件冒泡以及如何阻止它？
+事件冒泡是指嵌套最深的元素触发一个事件，然后这个事件顺着嵌套顺序在父元素上触发。
+
+防止事件冒泡的一种方法是使用 event.cancelBubble 或 event.stopPropagation()（低于 IE 9）。
+
+
 
 # ES6
 ## 1、let
@@ -282,6 +331,77 @@ ES6新增语法
     let {name, age} = {name:"lisi", age:20}
     实际上是
     let {name: name, age: age} = {name:"lisi", age:20}
+
+## 4、你能解释一下 ES5 和 ES6 之间的区别吗？
+```
+ECMAScript 5（ES5）：ECMAScript 的第 5 版，于 2009 年标准化。这个标准已在所有现代浏览器中完全实现。
+ECMAScript 6（ES6）或 ECMAScript 2015（ES2015）：第 6 版 ECMAScript，于 2015 年标准化。这个标准已在大多数现代浏览器中部分实现。
+```
+> 箭头函数和字符串插值：
+```
+const greetings = (name) => {
+ return `hello ${name}`;
+}
+const greetings = name => `hello ${name}`;
+```
+> 常量
+常量在很多方面与其他语言中的常量一样，但有一些需要注意的地方。常量表示对值的“固定引用”。因此，在使用常量时，你实际上可以改变变量所引用的对象的属性，但无法改变引用本身。
+```
+const NAMES = [];
+NAMES.push("Jim");
+console.log(NAMES.length === 1); // true
+NAMES = ["Steve", "John"]; // error
+```
+> 块作用域变量。
+新的 ES6 关键字 let 允许开发人员声明块级别作用域的变量。let 不像 var 那样可以进行提升。
+
+> 默认参数值
+默认参数允许我们使用默认值初始化函数。如果省略或未定义参数，则使用默认值，也就是说 null 是有效值。
+```
+// 基本语法
+function multiply (a, b = 2) {
+ return a * b;
+}
+multiply(5); // 10
+```
+> 类定义和继承
+ES6 引入了对类（关键字 class）、构造函数（关键字 constructor）和用于继承的 extend 关键字的支持。
+
+> for…of 操作符
+for…of 语句将创建一个遍历可迭代对象的循环。
+
+> 用于对象合并的 Spread 操作
+```
+const obj1 = { a: 1, b: 2 }
+const obj2 = { a: 2, c: 3, d: 4}
+const obj3 = {...obj1, ...obj2}
+```
+> promise
+promise 提供了一种机制来处理异步操作结果。你可以使用回调来达到同样的目的，但是 promise 通过方法链接和简洁的错误处理带来了更高的可读性。
+```
+const isGreater = (a, b) => {
+return new Promise ((resolve, reject) => {
+ if(a > b) {
+ resolve(true)
+ } else {
+ reject(false)
+ }
+ })
+}
+isGreater(1, 2)
+.then(result => {
+ console.log('greater')
+})
+.catch(result => {
+ console.log('smaller')
+})
+```
+> 模块导出和导入
+```
+const myModule = { x: 1, y: () => { console.log('This is ES5') }}
+export default myModule;
+import myModule from './myModule';
+```
 
 
 # Vue
@@ -354,7 +474,7 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
 3. SEO 难度较大：由于所有的内容都在一个页面中动态替换显示，所以在 SEO 上其有着天然的弱势。
 
 ## 7、父子组件之间的传值
-父向子组件传值：父组件通过绑定属性传送，子组件通过props接收
+父向子组件传值：父组件通过绑定属性传送，子组件通过props接收  
 子向父组件传值：子组件通过$emit()传送，父组件通过方法绑定接收
 
 ## 8、Vue路由实现页面跳转的两种方式（router-link和JS）
@@ -376,7 +496,7 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
 {path: '/demo2/:userId'}
 <!-- 如何在页面中获取到userId：在 mounted 钩子中使用 this.$route.params.xx. 获取传过来的参数，如下： -->
 mounted () {
-    alert(this.$route.params.userId)
+  alert(this.$route.params.userId)
 }
 ```
 > 传入地址键值对
@@ -386,7 +506,7 @@ mounted () {
 <!-- （注意这里不用在 router.js 里配置路径） -->
 <!-- 在新页面中获取到传过来的地址键值对 plan，可以在 mounted 钩子中使用 this.$route.plan.xx. 获取传过来的地址键值对，如下： -->
 mounted () {
-    alert(this.$route.query.plan)
+  alert(this.$route.query.plan)
 }
 ```
 ### JS实现
@@ -398,25 +518,25 @@ mounted () {
 > 简单写法：
 ```
 methods:{
-    toURL(){
+  toURL(){
     this.$router.push({ path: '/demo2' })
-    }
+  }
 }
 ```
 > 传参：
 ```
 methods:{
-    toURL(){
+  toURL(){
     this.$router.push({ name: 'demo2', params: { userId: 123 }})
-    }
+  }
 }
 ```
 > 传入地址键值对：
 ```
 methods:{
-    toURL(){
+  toURL(){
     this.$router.push({ name: 'demo2', params: { userId: 123 }, query: { plan: 'private' } })
-    }
+  }
 }
 ```
 
