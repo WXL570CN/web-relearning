@@ -359,12 +359,17 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
 
 ## 8、Vue路由实现页面跳转的两种方式（router-link和JS）
 1. 简单写法
+
     <router-link to="demo2">demo2</router-link>
+
 2. 使用 v-bind 的写法
+
     <router-link :to="'demo2'">demo2</router-link>
     <!-- 也可以用{}包裹对应的path或name -->
     <router-link :to="{ name: 'demo2' }">demo2</router-link>
+
 3. 传参的写法
+
     <router-link :to="{ name: 'demo2', params: { userId: 123 }}">demo2</router-link>
     <!-- router.js 中对 demo2 的路径进行配置 -->
     {path: '/demo2/:userId'}
@@ -372,7 +377,9 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
     mounted () {
       alert(this.$route.params.userId)
     }
+
 4. 传入地址键值对
+
     <router-link :to="{ path: 'demo2', query: { plan: 'private' }}">demo2</router-link>
     <!-- 页面跳转的结果为 /demo2?plan=private -->
     <!-- （注意这里不用在 router.js 里配置路径） -->
@@ -380,23 +387,31 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
     mounted () {
       alert(this.$route.query.plan)
     }
+
 5. JS实现
+
     <!-- template 部分： -->
     <button @click="toURL">跳转页面</button>
     <!-- script 部分：（注意这里是 router，上面是 route） -->
+
     5.1. 写法一：
+
     methods:{
       toURL(){
         this.$router.push({ path: '/demo2' })
       }
     }
+
     5.2. 写法二：
+
     methods:{
       toURL(){
         this.$router.push({ name: 'demo2', params: { userId: 123 }})
       }
     }
+
     5.3. 写法三：
+    
     methods:{
       toURL(){
         this.$router.push({ name: 'demo2', params: { userId: 123 }, query: { plan: 'private' } })
