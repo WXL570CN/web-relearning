@@ -388,7 +388,52 @@ addSix(21);
 
 防止事件冒泡的一种方法是使用 event.cancelBubble 或 event.stopPropagation()（低于 IE 9）。
 
+## 13、什么是Ajax
+Ajax是一种技术方案，但并不是一种新技术。它依赖现有的CSS/HTML/JavaScript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。实现了在页面不刷新的情况下和服务器进行数据交互。
 
+### 如何实现
+> json  
+```
+{
+  "name":"luoshushu",
+  "age":"25"
+}
+```
+> js  
+```
+//生成一个对象
+var xhr = new XMLHttpRequest()
+//请求类型：get
+//请求地址：/hello.json(必须是http或者https开头)
+//true：异步的方式。
+//false：同步的方式
+xhr.open('GET','/hello.json',true) 
+//发送
+xhr.send()
+```
+
+### 同步的获取
+```
+var xhr = new XMLHttpRequest()
+xhr.open('GET','/hello.json',false)  //false同步方式
+xhr.send()
+var data = xhr.responseText
+console.log(data) 
+```
+
+### 异步的获取：
+```
+<script>
+  var xhr = new XMLHttpRequest()
+  xhr.open('GET', '/hello.json', true)
+  xhr.send()
+  //监听数据，内部数据到了会触发load
+  xhr.addEventListener('load', function () {
+    var data = xhr.responseText
+    console.log(data)
+  })
+</script>
+```
 
 # ES6
 ## 1、let
@@ -508,8 +553,75 @@ let [x, y = 'b'] = ['a']; // x='a', y='b'
 let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
 ```
 
+## 5、Set
+ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
 
+Set本身是一个构造函数，用来生成 Set 数据结构。
+```
+const s = new Set();
 
+[2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+```
+
+```
+// 例一
+const set = new Set([1, 2, 3, 4, 4]);
+[...set]
+// [1, 2, 3, 4]
+
+// 例二
+const items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+items.size // 5
+
+// 例三
+const set = new Set(document.querySelectorAll('div'));
+set.size // 56
+
+// 类似于
+const set = new Set();
+document
+ .querySelectorAll('div')
+ .forEach(div => set.add(div));
+set.size // 56
+```
+
+上面代码也展示了一种去除数组重复成员的方法。
+```
+// 去除数组的重复成员
+[...new Set(array)]
+```
+
+上面的方法也可以用于，去除字符串里面的重复字符。
+```
+[...new Set('ababbc')].join('')
+// "abc"
+```
+
+## 6、Symbol
+ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）
+
+Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。
+```
+let s1 = Symbol('foo');
+let s2 = Symbol('bar');
+
+s1 // Symbol(foo)
+s2 // Symbol(bar)
+
+s1.toString() // "Symbol(foo)"
+s2.toString() // "Symbol(bar)"
+```
+
+ES2019 提供了一个实例属性description，直接返回 Symbol 的描述。
+```
+const sym = Symbol('foo');
+
+sym.description // "foo"
+```
 
 # Vue
 ## 1、对MVVM的理解
@@ -526,11 +638,11 @@ ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而
 ## 2、Vue的生命周期
 **beforeCreate（创建前）**：el 和 data 并未初始化（这个时期，this变量还不能使用，在data下的数据，和methods下的方法，watcher中的事件都不能获得到；）
 
-__created（创建后）__ ：完成了 data 数据的初始化，el没有,$el属性还没有显示出来（这个时候可以操作vue实例中的数据和各种方法，但是还不能对"dom"节点进行操作；）。异步请求适合在这调用。
+**created（创建后）** ：完成了 data 数据的初始化，el没有,$el属性还没有显示出来（这个时候可以操作vue实例中的数据和各种方法，但是还不能对"dom"节点进行操作；）。异步请求适合在这调用。
 
 **beforeMount（载入前）**：在挂载开始之前被调用，完成了 el 和 data 初始化，这里的el是虚拟的dom。实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上。
 
-**mounted（载入后）**：在el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。实例已完成以下的配置：用上面编译好的html内容替换el属性指向的DOM对象。完成模板中的html渲染到html页面中。此过程中进行ajax交互。
+**mounted（载入后）**：el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。实例已完成以下的配置：用上面编译好的html内容替换el属性指向的DOM对象。完成模板中的html渲染到html页面中。此过程中进行ajax交互。
 
 **beforeUpdate（更新前）** ：是指view层数据变化前，不是data中的数据改变前触发；
 
@@ -646,6 +758,24 @@ methods:{
   }
 }
 ```
+
+## 9、vue中的一些属性
+vm.$el  
+获取Vue实例关联的DOM元素；
+
+vm.$data  
+获取Vue实例的data选项（对象）
+
+vm.$options  
+获取Vue实例的自定义属性（如vm.$options.methods,获取Vue实例的自定义属性methods）
+
+vm.$refs  
+获取页面中所有含有ref属性的DOM元素（如vm.$refs.hello，获取页面中含有属性ref = “hello”的DOM元素，如果有多个元素，那么只返回最后一个）
+
+## 10、$el 和 el 的区别
+el是Vue实例的挂载目标。在实例挂载之后，元素可以用 vm.$el 访问。  
+挂载阶段还没开始的时候，$el属性是不可见的。Vue生命周期mounted阶段，el被新创建的vm.$el替换,这个时候Vue实例的挂载目标确定， DOM渲染完毕。在这个Vue实例当中，也就可以使用vm.$el访问到el了。
+
 
 
 
